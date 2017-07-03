@@ -119,35 +119,25 @@ declare module 'webpack-dev-server/client/sockjs.js' {
   declare module.exports: $Exports<'webpack-dev-server/client/sockjs'>;
 }
 declare module 'webpack-dev-server/client/web_modules/jquery/index.js' {
-  declare module.exports: $Exports<
-    'webpack-dev-server/client/web_modules/jquery/index',
-  >;
+  declare module.exports: $Exports<'webpack-dev-server/client/web_modules/jquery/index'>;
 }
 declare module 'webpack-dev-server/client/web_modules/jquery/jquery-1.8.1.js' {
-  declare module.exports: $Exports<
-    'webpack-dev-server/client/web_modules/jquery/jquery-1.8.1',
-  >;
+  declare module.exports: $Exports<'webpack-dev-server/client/web_modules/jquery/jquery-1.8.1'>;
 }
 declare module 'webpack-dev-server/client/webpack.config.js' {
   declare module.exports: $Exports<'webpack-dev-server/client/webpack.config'>;
 }
 declare module 'webpack-dev-server/client/webpack.sockjs.config.js' {
-  declare module.exports: $Exports<
-    'webpack-dev-server/client/webpack.sockjs.config',
-  >;
+  declare module.exports: $Exports<'webpack-dev-server/client/webpack.sockjs.config'>;
 }
 declare module 'webpack-dev-server/lib/OptionsValidationError.js' {
-  declare module.exports: $Exports<
-    'webpack-dev-server/lib/OptionsValidationError',
-  >;
+  declare module.exports: $Exports<'webpack-dev-server/lib/OptionsValidationError'>;
 }
 declare module 'webpack-dev-server/lib/Server.js' {
   declare module.exports: $Exports<'webpack-dev-server/lib/Server'>;
 }
 declare module 'webpack-dev-server/lib/util/addDevServerEntrypoints.js' {
-  declare module.exports: $Exports<
-    'webpack-dev-server/lib/util/addDevServerEntrypoints',
-  >;
+  declare module.exports: $Exports<'webpack-dev-server/lib/util/addDevServerEntrypoints'>;
 }
 declare module 'webpack-dev-server/lib/util/createDomain.js' {
   declare module.exports: $Exports<'webpack-dev-server/lib/util/createDomain'>;

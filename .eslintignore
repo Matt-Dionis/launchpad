@@ -1,3 +1,4 @@
 scripts/*
 config/*
 frontend/services/eslint/eslint.js
+flow-typed/

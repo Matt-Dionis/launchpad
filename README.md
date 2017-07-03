@@ -92,11 +92,27 @@ MONGODB_URL={YOUR MONGODB URL}
 AUTH0_SECRET={YOUR AUTH0 SECRET}
 ```
 
+Running against staging webtask service, you don't need your own webtask account
+then.
+
+```
+REACT_APP_LAUNCHPAD_API_URL=localhost:8080
+REACT_APP_AUTH0_DOMAIN={YOUR AUTH0 DOMAIN}
+REACT_APP_AUTH0_CLIENT_ID={YOUR AUTH0 CLIENTID}
+MONGODB_URL={YOUR MONGODB URL}
+AUTH0_SECRET={YOUR AUTH0 SECRET}
+WT_SINGLE_TENANT_CONTAINER=launchpad-staging
+WT_NO_PROXY=true
+WT_TOKEN=eyJhbGciOiJIUzI1NiIsImtpZCI6ImxhdW5jaHBhZC0xIn0.eyJqdGkiOiJiOGQ4OWE2OWUxN2Y0NWNhODIxM2M4ZGVjZDVlYjY4MyIsImlhdCI6MTQ5NzYwMjk0NiwiY2EiOlsiZmYxNDczNDYzNzY5NDNmMWEwN2JkMmQyNDkyYmUzZTkiXSwiZGQiOjIsInRlbiI6ImxhdW5jaHBhZC1zdGFnaW5nIn0.jT31-pdmCG8QyrZnwMYO5Mgi6GUe5D9tfTFT8X1XiBw
+WT_API=https://wt-launchpad.it.auth0.com/api
+WT_NO_PROXY=true
+```
+
 Then you can run server
 
 ```
 npm install
-npm run start-server
+npm run dev-server
 ```
 
 ### Production
@@ -107,10 +123,16 @@ Building frontend production bundle:
 npm run build
 ```
 
-Build backend into a webtask.
+Build backend.
 
 ```
 npm run build-server
+```
+
+Run compiled backend
+
+```
+npm run start-server
 ```
 
 ## Contributing

@@ -22,9 +22,9 @@ class WebtaskProvider {
     noProxy,
   }: {
     token: string,
-    webtaskUrl?: string,
-    singleTenantContainer?: string,
-    noProxy?: boolean,
+    webtaskUrl: ?string,
+    singleTenantContainer: ?string,
+    noProxy: boolean,
   }) {
     this.webtaskUrl = webtaskUrl || WEBTASK_API_URL;
     this.token = token;

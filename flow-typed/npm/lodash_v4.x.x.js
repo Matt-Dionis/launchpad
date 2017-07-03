@@ -1,5 +1,5 @@
-// flow-typed signature: b611e91eea833723f66a55f458ee8e27
-// flow-typed version: 13ceae43c9/lodash_v4.x.x/flow_>=v0.47.x
+// flow-typed signature: caa17d1a6768f4b6d3cb2016e80a891e
+// flow-typed version: 2038a43eec/lodash_v4.x.x/flow_>=v0.47.x
 
 declare module 'lodash' {
   declare type TemplateSettings = {
@@ -303,7 +303,7 @@ declare module 'lodash' {
     isSafeInteger(value: any): bool;
     isSet(value: any): bool;
     isString(value: string): true;
-    isString(value: number|Function|void|null|Object|Array<any>): false;
+    isString(value: number|bool|Function|void|null|Object|Array<any>): false;
     isSymbol(value: any): bool;
     isTypedArray(value: any): bool;
     isUndefined(value: any): bool;

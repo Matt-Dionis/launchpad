@@ -5,7 +5,10 @@
   "homepage": "https://launchpad.graphql.com",
   "license": "MIT",
   "author": "Sashko Stubailo <sashko@stubailo.com>",
-  "main": "build/webtask.js",
+  "engines": {
+    "node" : ">=7.0.0 <8.0.0",
+    "npm": ">=5.0.0 <6.0.0"
+  },
   "dependencies": {
     "apollo-client": "^1.4.2",
     "auth0-js": "^8.5.0",
@@ -15,6 +18,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-standalone": "^6.24.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
     "cryptiles": "^3.1.2",
     "danger": "^0.14.2",
     "file-saver": "^1.3.3",
@@ -22,6 +27,7 @@
     "graphql": "^0.10.1",
     "graphql-language-service-interface": "0.0.17",
     "graphql-language-service-utils": "0.0.16",
+    "graphql-server-express": "^1.0.0",
     "graphql-tag": "^2.0.0",
     "graphql-tools": "^1.0.0",
     "hashids": "^1.1.1",
@@ -53,7 +59,7 @@
     "case-sensitive-paths-webpack-plugin": "1.1.4",
     "chalk": "1.1.3",
     "css-loader": "0.28.1",
-    "dotenv": "4.0.0",
+    "dotenv": "^4.0.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^4.0.0",
@@ -96,15 +102,18 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js && cd build && cp index.html 200.html",
-    "build-server": "NODE_ENV=production webpack --config config/webpack.server.config.js",
-    "watch-server": "NODE_ENV=development webpack --watch --config config/webpack.server.config.js",
+    "build-server": "NODE_ENV=production babel --out-dir build/server server",
+    "start-server": "node build/server/index.js",
+    "dev-server": "NODE_ENV=development nodemon --exec \"node -r babel-register -r dotenv/config\" server/index.js",
     "jest": "node scripts/test.js --env=jsdom",
     "jest-once": "node scripts/test.js --env=jsdom --ci --forceExit",
     "flow": "flow",
     "eslint": "eslint ./frontend/",
     "check-prettier": "git ls-files | grep \"frontend\\|server\" | grep \"\\.(css\\|less\\|js\\|json)$\" | grep -v -f .eslintignore | xargs prettier-check --single-quote --trailing-comma all --write --write",
     "prettier": "git ls-files | grep \"frontend\\|server\" | grep \"\\.(css\\|less\\|js\\|json)$\" | grep -v -f .eslintignore | xargs prettier --single-quote --trailing-comma all --write --write",
-    "test": "npm run check-prettier && npm run eslint && npm run flow && npm run jest-once"
+    "test": "npm run check-prettier && npm run eslint && npm run flow && npm run jest-once",
+
+    "heroku-postbuild": "npm run build-server"
   },
   "jest": {
     "collectCoverageFrom": [
