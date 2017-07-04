@@ -26,7 +26,7 @@ const PadModel = {
     let padContext;
     let token = null;
     if (pad.context) {
-      if (UserModel.canUpdatePadDraft(user, pad, context)) {
+      if (UserModel.isPadOwner(user, pad, context)) {
         padContext = pad.context;
         token = pad.token;
       } else if (pad.context) {
@@ -37,7 +37,7 @@ const PadModel = {
     }
 
     let draft = null;
-    if (pad.draft && UserModel.canUpdatePadDraft(user, pad.draft, context)) {
+    if (pad.draft && UserModel.isPadOwner(user, pad.draft, context)) {
       draft = {
         ...PadModel.filter(pad.draft, context),
         title: pad.title,
@@ -240,7 +240,7 @@ const PadModel = {
     }
 
     const user = UserModel.me(context);
-    if (!UserModel.canUpdatePad(user, pad, context)) {
+    if (!UserModel.isPadOwner(user, pad, context)) {
       return {
         ok: false,
         reason: 'User can only update their own pads',
@@ -287,7 +287,7 @@ const PadModel = {
     const token = await context.webtask.getToken(id);
     if (pad) {
       let padContext = pad.context || [];
-      if (!UserModel.canUpdatePadDraft(user, pad, context)) {
+      if (!UserModel.isPadOwner(user, pad, context)) {
         padContext = padContext.map(({ key }) => ({
           key,
           value: '',
@@ -325,7 +325,7 @@ const PadModel = {
     let pad = await PadModel.getById(id, context);
 
     const user = UserModel.me(context);
-    if (!UserModel.canUpdatePadDraft(user, pad, context)) {
+    if (pad && pad.user && !UserModel.isPadOwner(user, pad, context)) {
       return {
         ok: false,
         reason: 'User can only update their own pads',
@@ -429,7 +429,7 @@ const PadModel = {
     const user = UserModel.me(context);
 
     let updatedPad;
-    if (UserModel.canUpdatePadDraft(user, pad, context)) {
+    if (UserModel.isPadOwner(user, pad, context)) {
       updatedPad = {
         ...pad,
         id,
@@ -459,7 +459,7 @@ const PadModel = {
       pad = await PadModel.empty(context, id);
     }
 
-    if (!UserModel.canUpdatePadDraft(user, pad, context)) {
+    if (!UserModel.isPadOwner(user, pad, context)) {
       return {
         ok: false,
         reason: 'User can only update their own pads',

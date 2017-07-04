@@ -87,10 +87,18 @@ export class MockWebtaskProvider {
   }
 }
 
-export function createTestContext(mongoUrl: string) {
+export class MockMongoProvider {}
+
+export function createTestContext(mongoUrl: ?string) {
+  let mongo;
+  if (mongoUrl) {
+    mongo = new MongoProvider(mongoUrl);
+  } else {
+    mongo = new MockMongoProvider();
+  }
   return {
     webtaskToken: 'TEST_WEBTASK_TOKEN',
-    mongo: new MongoProvider(mongoUrl),
+    mongo,
     webtask: new MockWebtaskProvider(),
     user: null,
   };

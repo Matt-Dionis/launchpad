@@ -15,7 +15,7 @@ const UserModel = {
     }
   },
 
-  async verify(authorization?: string, secret: string): Promise<?User> {
+  async verify(authorization: ?string, secret: string): Promise<?User> {
     const bearerLength = 'Bearer: '.length;
     if (authorization && authorization.length > bearerLength) {
       const token = authorization.slice(bearerLength);
@@ -56,14 +56,8 @@ const UserModel = {
     }
   },
 
-  canUpdatePad(user: ?User, pad: ?Pad, context: GraphQLContext) {
-    // Pad is anonymous or is owned by the user
-    return user && (!pad || !pad.user || (user && user.id === pad.user.id));
-  },
-
-  canUpdatePadDraft(user: ?User, pad: ?Pad, context: GraphQLContext) {
-    // Pad is anonymous and user is anonymous or owns the pad
-    return !pad || !pad.user || (user && user.id === pad.user.id);
+  isPadOwner(user: ?User, pad: ?Pad, context: GraphQLContext) {
+    return Boolean(user && (!pad || !pad.user || user.id === pad.user.id));
   },
 };
 
