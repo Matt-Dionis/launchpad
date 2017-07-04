@@ -40,7 +40,7 @@ exports[`render others 1`] = `
     </div>
     <TitleEditor
       canEdit={false}
-      githubUsername="example"
+      githubUsername="some-new-username"
       onSetTitle={[Function]}
       title="Fake 1"
     />
@@ -106,7 +106,7 @@ exports[`renders anon existing 1`] = `
     </div>
     <TitleEditor
       canEdit={false}
-      githubUsername={null}
+      githubUsername="example"
       onSetTitle={[Function]}
       title="Fake 1"
     />

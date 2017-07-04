@@ -117,7 +117,9 @@ export default class Header extends Component {
           <TitleEditor
             onSetTitle={this.props.onSetTitle}
             title={this.props.pad.title}
-            githubUsername={this.props.user && this.props.user.githubUsername}
+            githubUsername={
+              this.props.pad.user && this.props.pad.user.githubUsername
+            }
             canEdit={Boolean(
               !this.props.pad.user ||
                 (this.props.user &&
